@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Role;
-import com.example.demo.service.RoleService;
+import com.example.demo.model.Client;
+import com.example.demo.repository.ClientRepository;
+import com.example.demo.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,25 +11,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/role")
-public class RoleController {
+@RequestMapping("/user")
+public class ClientController {
     @Autowired
-    RoleService roleService;
+    private ClientService clientService;
 
     @GetMapping("/all")
-    public List<Role> getAllRoles(){
-        return roleService.getAllRoles();
+    public String getAllUsers(){
+        return "hello world from spring boot";
     }
 
+
     @PostMapping("/save")
-    public ResponseEntity<String> create(Role role){
+    public ResponseEntity<String> saveUser(Client user){
         try{
-            roleService.create(role);
-            return ResponseEntity.ok("role created with success");
-        } catch (Exception e){
+            clientService.create(user);
+            return  ResponseEntity.ok("compte create with success");
+        }
+        catch (Exception e){
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error try again");
         }
     }
