@@ -5,6 +5,8 @@ import com.example.demo.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientService {
     @Autowired
@@ -12,5 +14,9 @@ public class ClientService {
 
     public Client create(Client user){
         return clientRepository.save(user);
+    }
+
+    public List<Client> getAllClient(){
+        return clientRepository.findAll();
     }
 }

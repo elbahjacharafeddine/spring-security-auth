@@ -5,10 +5,7 @@ import com.example.demo.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class RoleController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<String> create(Role role){
+    public ResponseEntity<String> create(@RequestBody Role role){
         try{
             roleService.create(role);
             return ResponseEntity.ok("role created with success");
